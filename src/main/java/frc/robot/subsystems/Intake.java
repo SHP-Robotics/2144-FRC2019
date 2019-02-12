@@ -6,22 +6,21 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveIntake;
-import frc.robot.commands.DriveScissorLift;
 
-public class ScissorLift extends Subsystem {
+public class Intake extends Subsystem {
 
-    private Spark scissor_lift;
+    private Spark intake;
 
-    public ScissorLift() {
+    public Intake() {
     
-        scissor_lift = new Spark(RobotMap.SCISSOR_LIFT);
+        intake = new Spark(RobotMap.INTAKE);
     }
     
     public void runMotors(double speed) {
-        scissor_lift.set(speed);
+        intake.set(speed);
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new DriveScissorLift());
+        setDefaultCommand(new DriveIntake());
     }
 }

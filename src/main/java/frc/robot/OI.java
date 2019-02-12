@@ -1,42 +1,120 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+//objects for joysticks/buttons
+//methods for using joysticks
 
 package frc.robot;
 
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
+import edu.wpi.first.wpilibj.Joystick;
+
 public class OI {
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
+  public static final double JOY_DEADZONE = 0.05;
 
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
+  public final Joystick LEFT_JOY = new Joystick(0);
+  public final Joystick RIGHT_JOY = new Joystick(1);
 
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
+  public double getLeftJoyX(){
+    double raw = LEFT_JOY.getX();
+    return Math.abs(raw) < JOY_DEADZONE ? 0.0 : raw; //if raw is less than deadzone, return zero
+    
+  }
 
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
+  public double getLeftJoyY(){
+    double raw = LEFT_JOY.getY();
+    return Math.abs(raw) < JOY_DEADZONE ? 0.0 : raw; //if raw is less than deadzone, return zero
+    
+  }
 
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+  public double getRightJoyX(){
+    double raw = RIGHT_JOY.getX();
+    return Math.abs(raw) < JOY_DEADZONE ? 0.0 : raw; //if raw is less than deadzone, return zero
+    
+  }
+
+  public double getRightJoyY(){
+    double raw = RIGHT_JOY.getY();
+    return Math.abs(raw) < JOY_DEADZONE ? 0.0 : raw; //if raw is less than deadzone, return zero
+    
+  }
+
+  public double getRightJoyZ(){
+    double raw = RIGHT_JOY.getZ();
+    return Math.abs(raw) < JOY_DEADZONE ? 0.0 : raw; //if raw is less than deadzone, return zero
+    
+  }
+
+  //who knows?
+
+  public boolean get_intake_pos() {
+    return !RIGHT_JOY.getRawButton(ControlMap.intake_position);
+  }
+  
+  public double get_guide_power() {
+    return RIGHT_JOY.getRawButton(6) || RIGHT_JOY.getRawButton(3) ? 0.5 : RIGHT_JOY.getRawButton(5) ? -1 : 0;
+  }
+
+  public double get_climb_power() {
+    return RIGHT_JOY.getRawButton(4) ? 1 : RIGHT_JOY.getRawButton(6) || RIGHT_JOY.getRawButton(7) ? -1 : 0;
+  }
+
+  //intake 
+
+  public boolean get_intake() {
+    return RIGHT_JOY.getRawButton(ControlMap.intake_intake);
+  }
+
+  public boolean get_output() {
+    return LEFT_JOY.getRawButton(ControlMap.intake_output);
+  }
+
+  public double get_intake_spd() {
+    return get_intake() ? Constants.intake_intake_spd : get_output() ? Constants.intake_output_spd : 0;
+  }
+
+  //elevator
+
+  public boolean get_elevator_up() {
+    return RIGHT_JOY.getRawButton(ControlMap.elevator_up);
+  }
+
+  public boolean get_elevator_down() {
+    return LEFT_JOY.getRawButton(ControlMap.elevator_down);
+  }
+
+  public double get_elevator_spd() {
+    return get_elevator_up() ? Constants.elevator_up_spd : get_output() ? Constants.elevator_down_spd : 0;
+  }
+
+  //flip intake
+
+  public boolean get_flip_up() {
+    return RIGHT_JOY.getRawButton(ControlMap.flip_up);
+  }
+
+  public boolean get_flip_down() {
+    return LEFT_JOY.getRawButton(ControlMap.flip_down);
+  }
+
+  public double get_flip_spd() {
+    return get_flip_up() ? Constants.flip_up_spd : get_output() ? Constants.flip_down_spd : 0;
+  }
+
+  //scissor lift
+
+  public boolean get_scissor_up() {
+    return RIGHT_JOY.getRawButton(ControlMap.scissor_up);
+  }
+
+  public boolean get_scissor_down() {
+    return LEFT_JOY.getRawButton(ControlMap.scissor_down);
+  }
+
+  public double get_scissor_spd() {
+    return get_flip_up() ? Constants.scissor_up_spd : get_output() ? Constants.scissor_down_spd : 0;
+  }
+
+  //
+
+  public OI(){
+
+  }
 }

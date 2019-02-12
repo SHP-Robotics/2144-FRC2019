@@ -5,23 +5,23 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.DriveFlipIntake;
 import frc.robot.commands.DriveIntake;
-import frc.robot.commands.DriveScissorLift;
 
-public class ScissorLift extends Subsystem {
+public class FlipIntake extends Subsystem {
 
-    private Spark scissor_lift;
+    private Spark flip_intake;
 
-    public ScissorLift() {
+    public FlipIntake() {
     
-        scissor_lift = new Spark(RobotMap.SCISSOR_LIFT);
+        flip_intake = new Spark(RobotMap.INTAKE_FLIP);
     }
     
     public void runMotors(double speed) {
-        scissor_lift.set(speed);
+        flip_intake.set(speed);
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new DriveScissorLift());
+        setDefaultCommand(new DriveFlipIntake());
     }
 }

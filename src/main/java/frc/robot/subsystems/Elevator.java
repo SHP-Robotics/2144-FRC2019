@@ -5,23 +5,23 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.DriveElevator;
 import frc.robot.commands.DriveIntake;
-import frc.robot.commands.DriveScissorLift;
 
-public class ScissorLift extends Subsystem {
+public class Elevator extends Subsystem {
 
-    private Spark scissor_lift;
+    private Spark elevator;
 
-    public ScissorLift() {
+    public Elevator() {
     
-        scissor_lift = new Spark(RobotMap.SCISSOR_LIFT);
+        elevator = new Spark(RobotMap.ELEVATOR);
     }
     
     public void runMotors(double speed) {
-        scissor_lift.set(speed);
+        elevator.set(speed);
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new DriveScissorLift());
+        setDefaultCommand(new DriveElevator());
     }
 }
