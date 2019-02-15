@@ -3,6 +3,7 @@ import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.FlipIntake;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.NavSensor;
 import frc.robot.subsystems.ScissorLift;
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,6 +22,7 @@ import frc.robot.Robot;
   public static final ScissorLift scissor_lift = new ScissorLift();
 
   public static final NavSensor navsensor = new NavSensor();
+  public static final Limelight limelight = new Limelight();
 
   public CommandBase() {
       requires(Robot.drivebase);

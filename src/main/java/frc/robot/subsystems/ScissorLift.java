@@ -1,11 +1,8 @@
 package frc.robot.subsystems;
 
-
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.DriveIntake;
 import frc.robot.commands.DriveScissorLift;
 
 public class ScissorLift extends Subsystem {
