@@ -9,12 +9,10 @@ package frc.team2144.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team2144.Robot;
-import frc.team2144.Constants;
 
-public class IntakeDrive extends Command {
-
-  public IntakeDrive() {
-    requires(Robot.m_intake); // declare subsystem dependencies
+public class GatorDrive extends Command {
+  public GatorDrive() {
+    requires(Robot.m_drivetrain);
   }
 
   // Called just before this Command runs the first time
@@ -25,10 +23,10 @@ public class IntakeDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_oi.rightTriggerPressed())
-      Robot.m_intake.driveIntake(Constants.FULL_OUTTAKE_POWER);
-    if(Robot.m_oi.leftTriggerPressed())
-      Robot.m_intake.driveIntake(Constants.FULL_INTAKE_POWER);
+    double x = (Robot.m_oi.get_right_x() + Robot.m_oi.get_left_x()) / 2;
+    double y = -(Robot.m_oi.get_left_y() + Robot.m_oi.get_right_y()) / 2;
+    double rot = (Robot.m_oi.get_left_y() - Robot.m_oi.get_right_y()) / 2;
+    Robot.m_drivetrain.mecanumCartesian(x, y, rot); // tankanum drive
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,7 +38,6 @@ public class IntakeDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_intake.driveIntake(Constants.NO_POWER);
   }
 
   // Called when another command which requires one or more of the same

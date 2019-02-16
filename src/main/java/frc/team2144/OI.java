@@ -7,59 +7,64 @@
 
 package frc.team2144;
 
-import edu.wpi.first.wpilibj.Joystick; 
-import edu.wpi.first.wpilibj.buttons.*;
-import frc.team2144.commands.*;
+import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  Joystick leftStick = new Joystick(1); // i have no idea whether this number is right
-  Joystick rightStick = new Joystick(2); // i have no idea whether this number is right
+  public static final int LEFT_STICK_PORT = 1;
+  public static final int RIGHT_STICK_PORT = 2;
+  public static final int TRIGGER_PORT = 1;
 
-
-  // I want to have the buttons on the base of the joystick for totally automated processes.
-      // e.g. I want the scissor lift to be automated.
-  // not sure about the button numbers for this part. based off of the button labels on the joystick
-    // these buttons are on the top of the Joystick, labeled accordingly.
-  JoystickButton intakeTrigger = new JoystickButton(leftStick, 1);
-  JoystickButton outtakeTrigger = new JoystickButton(rightStick, 1);
+  private Joystick leftStick;
+  private Joystick rightStick;
 
   public OI() {
-    bindButtons();
+    leftStick = new Joystick(LEFT_STICK_PORT);
+    rightStick = new Joystick(RIGHT_STICK_PORT);
   }
 
-  private void bindButtons() {
-    intakeTrigger.whileHeld(new IntakeDrive(true));
-    outtakeTrigger.whileHeld(new IntakeDrive(false));
+      /**
+     * @return the X position of the left joystick. Right = positive.
+     */
+    public double get_left_x() {
+      return leftStick.getX();
   }
 
-  // JoystickButton stageOne = new JoystickButton(rightStick, 4);
-  // JoystickButton stageTwo = new JoystickButton(rightStick, 3);
-  // JoystickButton stageThree = new JoystickButton(rightStick, 5);
-  
-  // JoystickButton diskMode = new JoystickButton(leftStick, 4); // changes the constants for the elevator stages
-  // JoystickButton ballMode = new JoystickButton(leftStick, 5); // changes the constants for the elevator stages
+  /**
+   * @return the Y position of the left joystick. Forward = positive.
+   */
+  public double get_left_y() {
+      return -leftStick.getY();
+  }
 
-  // JoystickButton intakeDown = new JoystickButton(leftStick, 3);
-  // JoystickButton intakeUp = new JoystickButton(leftStick, 2);
+  /**
+   * @return the X position of the right joystick. Right = positive.
+   */
+  public double get_right_x() {
+      return rightStick.getX();
+  }
 
-  // JoystickButton eStop = new JoystickButton(rightStick, 6);
-  // JoystickButton scissorBoi = new JoystickButton(rightStick, 11);
-  
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
+  /**
+   * @return the Y position of the right joystick. Forward = positive.
+   */
+  public double get_right_y() {
+      return -rightStick.getY();
+  }
 
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
+  /**
+   * @return whether the trigger on the left joystick is pressed or not.
+   */
+  public boolean leftTriggerPressed() {
+    return leftStick.getRawButton(TRIGGER_PORT);
+  }
 
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+  /**
+   * @return whether the trigger on the right joystick is pressed or not.
+   */
+  public boolean rightTriggerPressed() {
+    return rightStick.getRawButton(TRIGGER_PORT);
+  }
 }

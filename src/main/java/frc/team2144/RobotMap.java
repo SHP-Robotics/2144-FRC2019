@@ -14,13 +14,12 @@ package frc.team2144;
  * floating around.
  */
 public class RobotMap {
-  // idk how numbers work
-  // public static final int BL_DRIVE = 1;
-  // public static final int BR_DRIVE = 2;
-  // public static final int FL_DRIVE = 3;
-  // public static final int FR_DRIVE = 4;
+  public static final int FL_DRIVE = 1;
+  public static final int FR_DRIVE = 2;
+  public static final int BL_DRIVE = 3;
+  public static final int BR_DRIVE = 4;
   
-  // public static final int SCISSOR = 5;
+  public static final int SCISSOR = 5;
   // public static final int ELEVATOR = 6;
   // public static final int INTAKE_FLIP = 7;
   public static final int INTAKE_DRIVE = 8; // we don't know what number this will be

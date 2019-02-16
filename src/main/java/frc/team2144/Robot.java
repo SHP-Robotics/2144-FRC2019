@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team2144.subsystems.IntakeOuttake;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team2144.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,7 +22,8 @@ import frc.team2144.subsystems.IntakeOuttake;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static IntakeOuttake m_intake = new IntakeOuttake();
+  public static IntakeOuttake m_intake;
+  public static Drivetrain m_drivetrain;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -35,6 +36,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
+    m_intake = new IntakeOuttake();
+    m_drivetrain = new Drivetrain();
     // this is for initializing autonomous
       // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
       // chooser.addOption("My Auto", new MyAutoCommand());
