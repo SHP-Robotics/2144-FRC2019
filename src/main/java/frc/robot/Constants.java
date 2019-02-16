@@ -20,18 +20,18 @@ public class Constants {
 
     //elevator speeds
 
-    public static final double elevator_up_spd = -0.2;
-    public static final double elevator_down_spd = 0.2;
+    public static final double elevator_up_spd = 0.5;
+    public static final double elevator_down_spd = -0.5;
 
     //flip intake speeds
 
-    public static final double flip_up_spd = -0.2;
-    public static final double flip_down_spd = 0.2;
+    public static final double flip_up_spd = 0.5;
+    public static final double flip_down_spd = -0.5;
 
     //scissor lift speeds
 
-    public static final double scissor_up_spd = -0.2;
-    public static final double scissor_down_spd = 0.2;
+    public static final double scissor_up_spd = 0.5;
+    public static final double scissor_down_spd = -0.5;
 
     public static final double K_DRIVE_P = 1;
     public static final double K_DRIVE_I = 1;

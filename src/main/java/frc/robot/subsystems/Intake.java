@@ -8,13 +8,14 @@ import frc.robot.RobotMap;
 import frc.robot.commands.DriveIntake;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+
 public class Intake extends Subsystem {
 
     private CANSparkMax intake;
 
     public Intake() {
     
-        intake = new CANSparkMax(RobotMap.INTAKE);
+        intake = new CANSparkMax(RobotMap.INTAKE, MotorType.kBrushless);
     }
     
     public void runMotors(double speed) {
