@@ -7,14 +7,27 @@
 
 package frc.team2144.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team2144.RobotMap;
 
 /**
- * Add your docs here.
+ * This subsystem will drive the intake and outtake wheels. It will be used for delivering balls and disks,
+ *  and during the climbing process. 
  */
 public class IntakeOuttake extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+
+  private CANSparkMax intake;
+
+  public IntakeOuttake() {
+    intake = new CANSparkMax(RobotMap.INTAKE_DRIVE, MotorType.kBrushless);
+  }
+  
+  public void driveIntake(double speed) {
+    intake.set(speed);
+  }
 
   @Override
   public void initDefaultCommand() {

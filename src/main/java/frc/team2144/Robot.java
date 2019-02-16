@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team2144.commands.ExampleCommand;
-import frc.team2144.subsystems.ExampleSubsystem;
+import frc.team2144.subsystems.IntakeOuttake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,7 +22,7 @@ import frc.team2144.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static IntakeOuttake m_intake = new IntakeOuttake();
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -36,9 +35,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    // this is for initializing autonomous
+      // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+      // chooser.addOption("My Auto", new MyAutoCommand());
+      // SmartDashboard.putData("Auto mode", m_chooser);
   }
 
   /**

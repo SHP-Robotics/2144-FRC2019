@@ -6,8 +6,10 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.team2144;
+
 import edu.wpi.first.wpilibj.Joystick; 
-import edu.wpi.first.wpilibj.buttons.JoystickButton;;
+import edu.wpi.first.wpilibj.buttons.*;
+import frc.team2144.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,12 +22,19 @@ public class OI {
 
   // I want to have the buttons on the base of the joystick for totally automated processes.
       // e.g. I want the scissor lift to be automated.
-
   // not sure about the button numbers for this part. based off of the button labels on the joystick
     // these buttons are on the top of the Joystick, labeled accordingly.
-
   JoystickButton intakeTrigger = new JoystickButton(leftStick, 1);
   JoystickButton outtakeTrigger = new JoystickButton(rightStick, 1);
+
+  public OI() {
+    bindButtons();
+  }
+
+  private void bindButtons() {
+    intakeTrigger.whileHeld(new IntakeDrive(true));
+    outtakeTrigger.whileHeld(new IntakeDrive(false));
+  }
 
   // JoystickButton stageOne = new JoystickButton(rightStick, 4);
   // JoystickButton stageTwo = new JoystickButton(rightStick, 3);
@@ -43,10 +52,8 @@ public class OI {
   //// TRIGGERING COMMANDS WITH BUTTONS
   // Once you have a button, it's trivial to bind it to a button in one of
   // three ways:
-
   // Start the command when the button is pressed and let it run the command
   // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
 
   // Run the command while the button is being held down and interrupt it once
   // the button is released.
