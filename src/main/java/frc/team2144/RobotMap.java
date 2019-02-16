@@ -14,6 +14,7 @@ package frc.team2144;
  * floating around.
  */
 public class RobotMap {
+  // CAN Wires
   public static final int FL_DRIVE = 1;
   public static final int FR_DRIVE = 2;
   public static final int BL_DRIVE = 3;
@@ -23,4 +24,10 @@ public class RobotMap {
   // public static final int ELEVATOR = 6;
   // public static final int INTAKE_FLIP = 7;
   public static final int INTAKE_DRIVE = 8; // we don't know what number this will be
+
+  // PWM Wires
+  public static final int SCISSOR_TOP_LIMIT = 0;
+  public static final int SCISSOR_BOTTOM_LIMIT = 1;
+  public static final int ELEVATOR_TOP_LIMIT = 7;
+  public static final int ELEVATOR_BOTTOM_LIMIT = 9;
 }

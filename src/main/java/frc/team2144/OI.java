@@ -8,6 +8,9 @@
 package frc.team2144;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+import frc.team2144.commands.NineteenClimb;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,20 +20,25 @@ public class OI {
   public static final int LEFT_STICK_PORT = 1;
   public static final int RIGHT_STICK_PORT = 2;
   public static final int TRIGGER_PORT = 1;
+  public static final int CLIMBER_BUTTON_PORT = 7;
 
   private Joystick leftStick;
   private Joystick rightStick;
 
+  private JoystickButton climberButton;
+
   public OI() {
     leftStick = new Joystick(LEFT_STICK_PORT);
     rightStick = new Joystick(RIGHT_STICK_PORT);
+    climberButton = new JoystickButton(rightStick, CLIMBER_BUTTON_PORT);
+    climberButton.whenPressed(new NineteenClimb());
   }
 
-      /**
-     * @return the X position of the left joystick. Right = positive.
-     */
-    public double get_left_x() {
-      return leftStick.getX();
+  /**
+   * @return the X position of the left joystick. Right = positive.
+   */
+  public double get_left_x() {
+    return leftStick.getX();
   }
 
   /**

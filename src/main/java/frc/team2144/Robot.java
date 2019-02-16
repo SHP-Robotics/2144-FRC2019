@@ -24,6 +24,7 @@ import frc.team2144.subsystems.*;
 public class Robot extends TimedRobot {
   public static IntakeOuttake m_intake;
   public static Drivetrain m_drivetrain;
+  public static ScissorLift m_scissor;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_intake = new IntakeOuttake();
     m_drivetrain = new Drivetrain();
+    m_scissor = new ScissorLift();
     // this is for initializing autonomous
       // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
       // chooser.addOption("My Auto", new MyAutoCommand());
