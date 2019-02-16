@@ -12,7 +12,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.team2144.commands.NineteenClimb;
 import frc.team2144.RobotMap;
 
 /**
@@ -41,6 +40,6 @@ public class ScissorLift extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new NineteenClimb());
+    
   }
 }

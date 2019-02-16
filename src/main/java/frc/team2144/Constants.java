@@ -4,6 +4,7 @@ public class Constants {
     // Motor Speeds
     public static final double FULL_OUTTAKE_POWER = 1.0;
     public static final double FULL_INTAKE_POWER = -1.0;
+    public static final double LIFT_POWER = 0.1;
     public static final double NO_POWER = 0.0;
 
     // Elevator Heights
