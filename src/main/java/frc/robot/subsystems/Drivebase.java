@@ -23,9 +23,9 @@ public class Drivebase extends Subsystem{
     private CANSparkMax BackRightMotor;
     
     private CANSparkMax scissor_lift;
-    private Spark elevator;
-    private Spark intake_flip;
-    private Spark intake;
+    private CANSparkMax elevator;
+    private CANSparkMax intake_flip;
+    private CANSparkMax intake;
 
     private Encoder fl_enc;
     private Encoder fr_enc;
@@ -43,9 +43,9 @@ public class Drivebase extends Subsystem{
         BackRightMotor = new CANSparkMax(RobotMap.br_port, MotorType.kBrushless);
 
         scissor_lift = new CANSparkMax(RobotMap.SCISSOR_LIFT, MotorType.kBrushless);
-        elevator = new Spark(RobotMap.ELEVATOR);
-        intake_flip = new Spark(RobotMap.INTAKE_FLIP);
-        intake = new Spark(RobotMap.INTAKE);
+        elevator = new CANSparkMax(RobotMap.ELEVATOR, MotorType.kBrushless);
+        intake_flip = new CANSparkMax(RobotMap.INTAKE_FLIP, MotorType.kBrushless);
+        intake = new CANSparkMax(RobotMap.INTAKE, MotorType.kBrushless);
 
         fl_enc = new Encoder(RobotMap.fl_enc_a, RobotMap.fl_enc_b);
         fr_enc = new Encoder(RobotMap.fr_enc_a, RobotMap.fr_enc_b);

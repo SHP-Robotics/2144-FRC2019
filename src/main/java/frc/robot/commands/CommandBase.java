@@ -22,7 +22,6 @@ import frc.robot.Robot;
   public static final ScissorLift scissor_lift = new ScissorLift();
 
   public static final NavSensor navsensor = new NavSensor();
-  public static final Limelight limelight = new Limelight();
 
   public CommandBase() {
       requires(Robot.drivebase);
