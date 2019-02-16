@@ -5,18 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.team2144.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class ElevatorLift extends Subsystem {
+public class ExampleSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
-  // This subsystem will be responsible for raising and lowering the elevator as well as raising and lowering the intake/outtake.
 
   @Override
   public void initDefaultCommand() {
