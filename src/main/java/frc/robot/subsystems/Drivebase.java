@@ -28,11 +28,10 @@ public class Drivebase extends Subsystem{
     private CANSparkMax intake_flip;
     private CANSparkMax intake;
 
-/*  private Encoder fl_enc;
-    private Encoder fr_enc;
-    private Encoder bl_enc;
-    private Encoder br_enc;
-*/
+    private CANEncoder fl_enc;
+    private CANEncoder bl_enc;
+    private CANEncoder fr_enc;
+    private CANEncoder br_enc;
 
     public MecanumDrive mecanumDrive;
     
@@ -48,12 +47,7 @@ public class Drivebase extends Subsystem{
         elevator        = new CANSparkMax(RobotMap.ELEVATOR, MotorType.kBrushless);
         intake_flip     = new CANSparkMax(RobotMap.INTAKE_FLIP, MotorType.kBrushless);
         intake          = new CANSparkMax(RobotMap.INTAKE, MotorType.kBrushless);
-/*
-        fl_enc = new CANEncoder(RobotMap.fl_enc_a, RobotMap.fl_enc_b);
-        fr_enc = new CANEncoder(RobotMap.fr_enc_a, RobotMap.fr_enc_b);
-        bl_enc = new CANEncoder(RobotMap.bl_enc_a, RobotMap.bl_enc_b);
-        br_enc = new CANEncoder(RobotMap.br_enc_a, RobotMap.br_enc_b);
-*/
+
         mecanumDrive = new MecanumDrive(FrontLeftMotor, BackLeftMotor, FrontRightMotor, BackRightMotor);
     }
 
@@ -77,15 +71,6 @@ public class Drivebase extends Subsystem{
 
     public void arcade(double spd, double rot, boolean squared) {
         mecanumDrive.driveCartesian(0, squared ? spd * Math.abs(spd) : spd, squared ? rot * Math.abs(rot) : rot);
-    }
-
-    public void reset_encoders() {
-    /* 
-        fl_enc.reset();
-        fr_enc.reset();
-        bl_enc.reset();
-        br_enc.reset();
-    */   
     }
     
     
@@ -113,5 +98,13 @@ public class Drivebase extends Subsystem{
 
     public void initDefaultCommand(){
         setDefaultCommand(new OperateMechanumDrive());//starts the command
+    }
+
+    public void runMotors(double left_speed, double right_speed) {
+        FrontLeftMotor.set(left_speed);
+        BackLeftMotor.set(left_speed);
+        
+        FrontRightMotor.set(right_speed);
+        BackRightMotor.set(right_speed);
     }
 }

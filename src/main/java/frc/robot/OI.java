@@ -4,6 +4,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Autonomous;
 
 public class OI {
 
@@ -11,6 +14,8 @@ public class OI {
 
   public final Joystick LEFT_JOY = new Joystick(0);
   public final Joystick RIGHT_JOY = new Joystick(1);
+
+  Button button1 = new JoystickButton(LEFT_JOY, 1);
 
   public double getLeftJoyX(){
     double raw = LEFT_JOY.getX();
@@ -115,6 +120,8 @@ public class OI {
   //
 
   public OI(){
+
+    button1.whenPressed(new Autonomous());
 
   }
 }

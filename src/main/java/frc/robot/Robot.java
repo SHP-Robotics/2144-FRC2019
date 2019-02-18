@@ -7,9 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.Autonomous;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.NavSensor;
+
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMax;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -21,7 +26,17 @@ public class Robot extends TimedRobot {
   public static final NavSensor navsensor = new NavSensor();
   public static Limelight limelight = new Limelight(false);
 
-  Command m_autonomousCommand;  
+  private CANSparkMax FrontLeftMotor;
+  private CANSparkMax FrontRightMotor;
+  private CANSparkMax BackLeftMotor;
+  private CANSparkMax BackRightMotor;
+
+  private CANEncoder fl_enc;
+  private CANEncoder bl_enc;
+  private CANEncoder fr_enc;
+  private CANEncoder br_enc;
+
+  Command Autonomous; 
   SendableChooser<Command> chooser = new SendableChooser<>();
 
   @Override
@@ -30,6 +45,13 @@ public class Robot extends TimedRobot {
     drivebase = new Drivebase();
 
     SmartDashboard.putData("Auto mode", chooser);
+
+    fl_enc = FrontLeftMotor.getEncoder();
+    bl_enc = BackLeftMotor.getEncoder();
+    fr_enc = FrontRightMotor.getEncoder();
+    br_enc = BackRightMotor.getEncoder();
+
+    Autonomous = new Autonomous();
   }
 
   @Override
@@ -48,7 +70,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    
+    if(Autonomous != null){
+      Autonomous.start();
+    }
   }
 
   @Override
@@ -59,8 +83,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
   
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (Autonomous != null) {
+      Autonomous.cancel();
     }
   }
 
@@ -68,7 +92,10 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    
+    SmartDashboard.putNumber("Encoder Pos", fr_enc.getPosition());
+    SmartDashboard.putNumber("Encoder Pos", br_enc.getPosition());
+    SmartDashboard.putNumber("Encoder Pos", fl_enc.getPosition());
+    SmartDashboard.putNumber("Encoder Pos", bl_enc.getPosition());
   }
 
   @Override
