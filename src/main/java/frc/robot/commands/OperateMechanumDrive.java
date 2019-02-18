@@ -12,7 +12,7 @@ public class OperateMechanumDrive extends CommandBase {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    drivebase.reset_encoders();
+   
   }
 
   // Called repeatedly when this Command is scheduled to run

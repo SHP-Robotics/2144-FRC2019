@@ -44,6 +44,10 @@ public class Robot extends TimedRobot {
     oi = new OI();
     drivebase = new Drivebase();
 
+    chooser = new SendableChooser<>();
+    //there will be an option on the dashboard to select this
+    chooser.setDefaultOption("Default program", new Autonomous());
+    //chooser.addObject("Auto", new AutonomouTest());
     SmartDashboard.putData("Auto mode", chooser);
 
     fl_enc = FrontLeftMotor.getEncoder();
@@ -70,9 +74,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    if(Autonomous != null){
-      Autonomous.start();
-    }
+    Autonomous = (Command) chooser.getSelected();
+    Autonomous.start();
   }
 
   @Override
