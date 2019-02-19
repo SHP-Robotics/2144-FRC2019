@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team2144;
+package frc.robot;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -14,16 +14,16 @@ package frc.team2144;
  * floating around.
  */
 public class RobotMap {
-  // CAN Wires
+  // CAN Wires, SPARK MAX Configured
   public static final int FL_DRIVE = 1;
   public static final int FR_DRIVE = 2;
   public static final int BL_DRIVE = 3;
   public static final int BR_DRIVE = 4;
   
   public static final int SCISSOR = 5;
-  // public static final int ELEVATOR = 6;
-  // public static final int INTAKE_FLIP = 7;
-  public static final int INTAKE_DRIVE = 8; // we don't know what number this will be
+  public static final int ELEVATOR = 6;
+  public static final int INTAKE_FLIP = 7;
+  public static final int INTAKE_DRIVE = 8;
 
   // PWM Wires
   public static final int SCISSOR_TOP_LIMIT = 0;

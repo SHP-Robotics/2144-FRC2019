@@ -5,16 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team2144.commands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.team2144.Robot;
-import frc.team2144.Constants;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
-public class IntakeDrive extends Command {
+import frc.robot.Robot;
+import frc.robot.Constants;
+import frc.robot.commands.ElevatorDrive;
 
-  public IntakeDrive() {
-    requires(Robot.m_intake); // declare subsystem dependencies
+public class NineteenClimb extends Command {
+  public NineteenClimb() {
+    requires(Robot.m_scissor);
   }
 
   // Called just before this Command runs the first time
@@ -25,22 +27,23 @@ public class IntakeDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_oi.rightTriggerPressed())
-      Robot.m_intake.driveIntake(Constants.FULL_OUTTAKE_POWER);
-    if(Robot.m_oi.leftTriggerPressed())
-      Robot.m_intake.driveIntake(Constants.FULL_INTAKE_POWER);
+    Robot.m_scissor.driveScissorLift(Constants.LIFT_POWER);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    if(Robot.m_scissor.limitSwitchPressed())
+      return true;
+    else
+      return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_intake.driveIntake(Constants.NO_POWER);
+    Robot.m_scissor.driveScissorLift(Constants.NO_POWER);
+    Scheduler.getInstance().add(new ElevatorDrive(Constants.CLIMBER));
   }
 
   // Called when another command which requires one or more of the same

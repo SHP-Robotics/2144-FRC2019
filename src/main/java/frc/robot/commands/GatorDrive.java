@@ -5,10 +5,10 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team2144.commands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.team2144.Robot;
+import frc.robot.Robot;
 
 public class GatorDrive extends Command {
   public GatorDrive() {

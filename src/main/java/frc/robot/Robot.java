@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team2144;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team2144.subsystems.*;
+import frc.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +25,7 @@ public class Robot extends TimedRobot {
   public static IntakeOuttake m_intake;
   public static Drivetrain m_drivetrain;
   public static ScissorLift m_scissor;
+  public static Elevator m_elevator;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -40,6 +41,7 @@ public class Robot extends TimedRobot {
     m_intake = new IntakeOuttake();
     m_drivetrain = new Drivetrain();
     m_scissor = new ScissorLift();
+    m_elevator = new Elevator();
     // this is for initializing autonomous
       // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
       // chooser.addOption("My Auto", new MyAutoCommand());

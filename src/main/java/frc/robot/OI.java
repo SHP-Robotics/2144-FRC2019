@@ -5,12 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team2144;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import frc.team2144.commands.NineteenClimb;
+import frc.robot.commands.NineteenClimb;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,7 +31,7 @@ public class OI {
     leftStick = new Joystick(LEFT_STICK_PORT);
     rightStick = new Joystick(RIGHT_STICK_PORT);
     climberButton = new JoystickButton(rightStick, CLIMBER_BUTTON_PORT);
-    climberButton.whenPressed(new NineteenClimb());
+    // climberButton.whenPressed(new NineteenClimb());
   }
 
   /**

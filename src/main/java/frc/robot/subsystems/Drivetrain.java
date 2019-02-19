@@ -5,15 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team2144.subsystems;
+package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.team2144.commands.GatorDrive;
-import frc.team2144.RobotMap;
+import frc.robot.commands.GatorDrive;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.

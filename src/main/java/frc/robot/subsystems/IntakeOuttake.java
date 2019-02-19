@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team2144.subsystems;
+package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.team2144.commands.IntakeDrive;
-import frc.team2144.RobotMap;
+import frc.robot.commands.IntakeDrive;
+import frc.robot.RobotMap;
 
 /**
  * This subsystem will drive the intake and outtake wheels. It will be used for delivering balls and disks,
