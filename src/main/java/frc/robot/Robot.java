@@ -99,6 +99,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Encoder Pos", br_enc.getPosition());
     SmartDashboard.putNumber("Encoder Pos", fl_enc.getPosition());
     SmartDashboard.putNumber("Encoder Pos", bl_enc.getPosition());
+
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("<variablename>").getDouble(0);
   }
 
   @Override
