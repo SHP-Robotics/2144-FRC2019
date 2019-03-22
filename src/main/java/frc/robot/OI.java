@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import java.lang.Math;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -18,8 +20,10 @@ import frc.robot.commands.NineteenClimb;
  */
 public class OI {
   public static final int LEFT_STICK_PORT = 1;
-  public static final int RIGHT_STICK_PORT = 2;
+  public static final int RIGHT_STICK_PORT = 0;
   public static final int TRIGGER_PORT = 1;
+  public static final int LOW_BUTTON_PORT = 3; // switched
+  public static final int HIGH_BUTTON_PORT = 2; // temp switched
   public static final int CLIMBER_BUTTON_PORT = 7;
 
   private Joystick leftStick;
@@ -31,35 +35,43 @@ public class OI {
     leftStick = new Joystick(LEFT_STICK_PORT);
     rightStick = new Joystick(RIGHT_STICK_PORT);
     climberButton = new JoystickButton(rightStick, CLIMBER_BUTTON_PORT);
-    // climberButton.whenPressed(new NineteenClimb());
+    climberButton.whenPressed(new NineteenClimb());
   }
 
   /**
    * @return the X position of the left joystick. Right = positive.
    */
   public double get_left_x() {
-    return leftStick.getX();
+    if (Math.abs(leftStick.getX()) < Constants.JOYSTICK_DEAD_ZONE)
+      return 0;
+    return Math.abs(leftStick.getX())*leftStick.getX();
   }
 
   /**
    * @return the Y position of the left joystick. Forward = positive.
    */
   public double get_left_y() {
-      return -leftStick.getY();
+    if (Math.abs(leftStick.getY()) < Constants.JOYSTICK_DEAD_ZONE)
+      return 0;
+    return -1*Math.abs(leftStick.getY())*leftStick.getY();
   }
 
   /**
    * @return the X position of the right joystick. Right = positive.
    */
   public double get_right_x() {
-      return rightStick.getX();
+    if (Math.abs(rightStick.getX()) < Constants.JOYSTICK_DEAD_ZONE)
+      return 0;
+    return Math.abs(rightStick.getX())*rightStick.getX();
   }
 
   /**
    * @return the Y position of the right joystick. Forward = positive.
    */
   public double get_right_y() {
-      return -rightStick.getY();
+    if (Math.abs(rightStick.getY()) < Constants.JOYSTICK_DEAD_ZONE)
+      return 0;
+    return -1*Math.abs(rightStick.getY())*rightStick.getY();
   }
 
   /**
@@ -74,5 +86,25 @@ public class OI {
    */
   public boolean rightTriggerPressed() {
     return rightStick.getRawButton(TRIGGER_PORT);
+  }
+
+  public boolean leftLowPressed() {
+    return leftStick.getRawButton(LOW_BUTTON_PORT);
+  }
+
+  public boolean rightLowPressed() {
+    return rightStick.getRawButton(LOW_BUTTON_PORT);
+  }
+
+  public boolean leftHighPressed() {
+    return leftStick.getRawButton(HIGH_BUTTON_PORT);
+  }
+
+  public boolean rightHighPressed() {
+    return rightStick.getRawButton(HIGH_BUTTON_PORT);
+  }
+
+  public boolean fullSendPressed() {
+    return rightStick.getRawButton(5);
   }
 }

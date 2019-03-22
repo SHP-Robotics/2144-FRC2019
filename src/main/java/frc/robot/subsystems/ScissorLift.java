@@ -34,8 +34,12 @@ public class ScissorLift extends Subsystem {
     scissorMotor.set(speed);
   }
 
-  public boolean limitSwitchPressed() {
-    return bottomLimitSwitch.isAnalogTrigger() || topLimitSwitch.isAnalogTrigger();
+  public boolean bottomLimitPressed() {
+    return bottomLimitSwitch.get();
+  }
+
+  public boolean topLimitPressed() {
+    return topLimitSwitch.get();
   }
 
   @Override

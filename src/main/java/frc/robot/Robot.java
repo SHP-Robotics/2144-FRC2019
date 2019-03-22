@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.*;
 
 /**
@@ -37,11 +36,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
     m_intake = new IntakeOuttake();
     m_drivetrain = new Drivetrain();
     m_scissor = new ScissorLift();
     m_elevator = new Elevator();
+    m_oi = new OI();
     // this is for initializing autonomous
       // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
       // chooser.addOption("My Auto", new MyAutoCommand());

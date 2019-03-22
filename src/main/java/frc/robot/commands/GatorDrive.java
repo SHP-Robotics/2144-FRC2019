@@ -23,10 +23,15 @@ public class GatorDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double x = (Robot.m_oi.get_right_x() + Robot.m_oi.get_left_x()) / 2;
-    double y = -(Robot.m_oi.get_left_y() + Robot.m_oi.get_right_y()) / 2;
+    if (Robot.m_oi.fullSendPressed()) {
+      Robot.m_drivetrain.fullSend();
+    }
+    else {
+      double x = (Robot.m_oi.get_right_x()/* + Robot.m_oi.get_left_x()*/) / 2; // just drives with the left stick
+    double y = (Robot.m_oi.get_left_y() + Robot.m_oi.get_right_y()) / 2;
     double rot = (Robot.m_oi.get_left_y() - Robot.m_oi.get_right_y()) / 2;
     Robot.m_drivetrain.mecanumCartesian(x, y, rot); // tankanum drive
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

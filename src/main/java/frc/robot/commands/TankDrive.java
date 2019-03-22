@@ -8,13 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 import frc.robot.Robot;
-import frc.robot.Constants;
 
-public class ElevatorDrive extends Command {
-  public ElevatorDrive() {
-    requires(Robot.m_elevator);
+public class TankDrive extends Command {
+  public TankDrive() {
+    requires(Robot.m_drivetrain);
   }
 
   // Called just before this Command runs the first time
@@ -25,14 +23,9 @@ public class ElevatorDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // if(Robot.m_oi.leftLowPressed())
-    //   Robot.m_elevator.setElevatorSetpoint(Constants.ELEV_LOWEST);
-    // else if(Robot.m_oi.leftHighPressed())
-    //   Robot.m_elevator.setElevatorSetpoint(Constants.ELEV_LEVEL_TWO);
-    if(Robot.m_oi.leftLowPressed()) // bound to left 8
-      Robot.m_elevator.driveElev(-0.4); // direction?
-    else if (Robot.m_oi.leftHighPressed()) // bound to left 9
-      Robot.m_elevator.driveElev(0.4); // direction?
+    double l = Robot.m_oi.get_left_y();
+    double r = Robot.m_oi.get_right_y();
+    // Robot.m_drivetrain.tank(l, r); // tankanum drive
   }
 
   // Make this return true when this Command no longer needs to run execute()

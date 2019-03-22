@@ -26,8 +26,8 @@ public class RobotMap {
   public static final int INTAKE_DRIVE = 8;
 
   // PWM Wires
-  public static final int SCISSOR_TOP_LIMIT = 0;
-  public static final int SCISSOR_BOTTOM_LIMIT = 1;
-  public static final int ELEVATOR_TOP_LIMIT = 7;
+  public static final int SCISSOR_BOTTOM_LIMIT = 0;
+  public static final int SCISSOR_TOP_LIMIT = 1;
   public static final int ELEVATOR_BOTTOM_LIMIT = 9;
+  public static final int ELEVATOR_TOP_LIMIT = 7;
 }

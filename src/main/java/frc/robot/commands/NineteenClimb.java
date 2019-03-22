@@ -8,15 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 import frc.robot.Robot;
 import frc.robot.Constants;
-import frc.robot.commands.ElevatorDrive;
 
 public class NineteenClimb extends Command {
   public NineteenClimb() {
     requires(Robot.m_scissor);
+    requires(Robot.m_elevator);
+    requires(Robot.m_intake);
   }
 
   // Called just before this Command runs the first time
@@ -33,7 +33,7 @@ public class NineteenClimb extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.m_scissor.limitSwitchPressed())
+    if(Robot.m_scissor.topLimitPressed())
       return true;
     else
       return false;
@@ -43,7 +43,8 @@ public class NineteenClimb extends Command {
   @Override
   protected void end() {
     Robot.m_scissor.driveScissorLift(Constants.NO_POWER);
-    Scheduler.getInstance().add(new ElevatorDrive(Constants.CLIMBER));
+    Robot.m_intake.flipIntake(Constants.INTAKE_CLIMB);
+    Robot.m_elevator.setElevatorSetpoint(Constants.ELEV_CLIMBER);
   }
 
   // Called when another command which requires one or more of the same

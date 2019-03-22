@@ -11,7 +11,10 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import frc.robot.commands.ElevatorDrive;
+import frc.robot.Constants;
 import frc.robot.RobotMap;
 
 /**
@@ -21,24 +24,39 @@ public class Elevator extends PIDSubsystem {
 
   private CANSparkMax elevator;
   private CANEncoder elevatorEncoder;
+
+  private DigitalInput bottomLimitSwitch;
+  private DigitalInput topLimitSwitch;
+
   /**
    * Add your docs here.
    */
   public Elevator() {
     // Intert a subsystem name and PID values here
-    super("Elevator", 1, 2, 3);  // choose PID values
+    super("Elevator", Constants.ELEVATOR_P, Constants.ELEVATOR_I, Constants.ELEVATOR_D);
     elevator = new CANSparkMax(RobotMap.ELEVATOR, MotorType.kBrushless);
     elevatorEncoder = new CANEncoder(elevator);
-    // Use these to get going:
-    // setSetpoint() - Sets where the PID controller should move the system
-    // to
-    // enable() - Enables the PID controller.
+    // elevatorEncoder.setPosition(0.0);
+
+    bottomLimitSwitch = new DigitalInput(RobotMap.ELEVATOR_BOTTOM_LIMIT);
+    topLimitSwitch = new DigitalInput(RobotMap.ELEVATOR_TOP_LIMIT);
+    // this.enable();
+  }
+
+  public void setElevatorSetpoint(double setpoint) {
+    this.setSetpoint(setpoint);
+  }
+
+  public void driveElev(double speed) {
+    if ((bottomLimitPressed() && speed < 0.0) || (topLimitPressed() && speed > 0.0)) { 
+      elevator.set(0.0);
+    }
+    elevator.set(speed);
   }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new ElevatorDrive());
   }
 
   @Override
@@ -46,13 +64,24 @@ public class Elevator extends PIDSubsystem {
     // Return your input value for the PID loop
     // e.g. a sensor, like a potentiometer:
     // yourPot.getAverageVoltage() / kYourMaxVoltage;
-    return 0.0;
+    return elevatorEncoder.getPosition()/* / Constants.MAX_ELEV_ENCODER*/;
+  }
+
+  public boolean bottomLimitPressed() {
+    return bottomLimitSwitch.get();
+  }
+
+  public boolean topLimitPressed() {
+    return topLimitSwitch.get();
   }
 
   @Override
   protected void usePIDOutput(double output) {
-    // Use output to drive your system, like a motor
-    // e.g. yourMotor.set(output);
-    elevator.set(output);
+    // if ((bottomLimitPressed() && output < 0.0) || (topLimitPressed() && output > 0.0)) { 
+    //   elevator.set(0.0);
+    //   this.setSetpoint(this.getPosition());
+    // }
+    // else
+    //   elevator.set(output);
   }
 }

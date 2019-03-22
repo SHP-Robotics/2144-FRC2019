@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.Constants;
@@ -25,11 +26,26 @@ public class IntakeDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_oi.rightTriggerPressed())
-      Robot.m_intake.driveIntake(Constants.FULL_OUTTAKE_POWER);
-    if(Robot.m_oi.leftTriggerPressed())
-      Robot.m_intake.driveIntake(Constants.FULL_INTAKE_POWER);
-  }
+    if(Robot.m_oi.leftTriggerPressed()) // switched
+      Robot.m_intake.driveIntake(Constants.FULL_FORWARD_POWER);
+    else if(Robot.m_oi.rightTriggerPressed()) // switched
+      Robot.m_intake.driveIntake(Constants.FULL_REVERSE_POWER);
+    else
+      Robot.m_intake.driveIntake(Constants.NO_POWER);
+    // if(Robot.m_oi.rightLowPressed()) {
+    //   Robot.m_intake.flipIntake(Constants.INTAKE_UP);
+    // }
+    // else if(Robot.m_oi.rightHighPressed()) {
+    //   Robot.m_intake.flipIntake(Constants.INTAKE_DOWN);
+    // }
+    if(Robot.m_oi.rightHighPressed())
+      Robot.m_intake.driveFlip(Constants.FULL_FORWARD_POWER); // Down
+    else if(Robot.m_oi.rightLowPressed())
+      Robot.m_intake.driveFlip(Constants.FULL_REVERSE_POWER); // Up
+    else
+      Robot.m_intake.driveFlip(Constants.NO_POWER);
+    // SmartDashboard.putString("Flip Encoder", ""+(Robot.m_intake.getFlipEncoderVal()));
+    }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -40,7 +56,6 @@ public class IntakeDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_intake.driveIntake(Constants.NO_POWER);
   }
 
   // Called when another command which requires one or more of the same
